@@ -26,8 +26,6 @@ namespace OopAssignment
         public void TotalQuantity()
         {
             var x = itemCart
-                .Select(x => x.Quantity)
-                .Sum();
         }
     }
 
