@@ -100,10 +100,5 @@ namespace OopAssignment
         }
     }
 
-    public interface IItems
-    {
-        int Item_id { get; set; }
-        int Price { get; set; }
-        int Quantity { get; set; }
-    }
+
 }

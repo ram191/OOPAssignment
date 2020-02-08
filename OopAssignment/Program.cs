@@ -8,9 +8,9 @@ namespace OopAssignment
     {
         static void Main(string[] args)
         {
-            var message = CipherClass.encrypt("hahaha", "password");
-            Console.WriteLine(message);
-            var decrypt = CipherClass.decrypt(message, "salahpassword");
+            //var message = CipherClass.encrypt("hahaha", "password");
+            //Console.WriteLine(message);
+            //var decrypt = CipherClass.decrypt(message, "salahpassword");
 
             //Auth.Login("ram191", "123456");
             //Auth.LastLogin();
@@ -26,7 +26,8 @@ namespace OopAssignment
 
             //Console.WriteLine(Cart.TotalPrice());
 
-            LogClass.PopulateErrorLog();
+            Auth.PopulateUser();
+            Auth.Login("riski", "123456");
             LogClass.SaveAllErrorLog();
         }
     }

@@ -35,9 +35,5 @@ namespace OopAssignment
         public DateTime Date { get; set; }
         public string Message { get; set; }
     }
-    public interface IErrorLog
-    {
-        DateTime Date { get; set; }
-        string Message { get; set; }
-    }
+    
 }

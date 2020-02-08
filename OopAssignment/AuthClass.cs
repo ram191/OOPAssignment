@@ -1,36 +1,74 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace OopAssignment
 {
-    public class Auth : User
+    public class Auth
     {
         public static bool isLoggedIn = false;
+        static int userId;
         public static DateTime lastLoggedIn;
+        private static List<User> userList = new List<User>();
 
         public static void Login(string name, string password)
         {
+            bool IsExist = false;
+            foreach (var u in userList)
             {
-                if (name == "ram191" && password == "123456")
+                if (u.Username == name && u.Password == password)
                 {
-                    isLoggedIn = true;
                     Console.WriteLine("You are now logged in!");
-                    lastLoggedIn = DateTime.Now;
-
+                    isLoggedIn = true;
+                    userId = u.Id;
+                    
+                    IsExist = true;
                 }
-                else
+                else if(u.Username == name)
                 {
-                    Console.WriteLine("Username or Password invalid!");
+                    Console.WriteLine("Wrong password. Please try again");
+                    IsExist = true;
                 }
             }
+            if (IsExist == false)
+            {
+                string message = "User does not exist. Please Register.";
+                Console.WriteLine(message);
+                DateTime date = DateTime.Now;
+                LogClass.errorLog.Add(new ErrorLog { Date = date, Message = message });
+            }
+            IsExist = false;
         }
 
         public static void Validate(string name, string password)
         {
-            Console.WriteLine($"Your username is {name} and your password is {password}");
+            bool IsExist = false;
+            foreach (var u in userList)
+            {
+                if (u.Username == name && u.Password == password)
+                {
+                    Console.WriteLine($"Your username is {name} and your username is {password}");
+                    IsExist = true;
+                }
+                else if (u.Username == name)
+                {
+                    Console.WriteLine("Wrong password. Please try again");
+                    IsExist = true;
+                }
+            }
+            if (IsExist == false)
+            {
+                string message = "User does not exist. Please Register.";
+                Console.WriteLine(message);
+                DateTime date = DateTime.Now;
+                LogClass.errorLog.Add(new ErrorLog { Date = date, Message = message });
+            }
         }
 
         public static void LogOut()
         {
+            Console.WriteLine("You are successfully logged out");
             isLoggedIn = false;
+            userId = 0;
         }
 
         public static void Id()
@@ -41,7 +79,7 @@ namespace OopAssignment
             }
             else
             {
-                Console.WriteLine($"Your ID is");
+                Console.WriteLine($"Your ID is {userId}");
             }
         }
 
@@ -58,6 +96,10 @@ namespace OopAssignment
         public static void LastLogin()
         {
             Console.WriteLine(lastLoggedIn);
+        }
+        public static void PopulateUser()
+        {
+            userList.Add(new User { Username = "ram191", Password = "password", Id = 1, FirstName = "rayhan", LastName = "muhammad", Email = "ali_rayhan19@hotmail.com"});
         }
     }
 }
