@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace OopAssignment
 {
-    class Program
+    class Program                                                                                                             
     {
         static void Main(string[] args)
         {
@@ -19,11 +19,13 @@ namespace OopAssignment
 
             Cart newcart = new Cart();
 
-            newcart.AddItem(2, 20000, 2)
-                .AddItem(3, 30000, 3)
-                .AddItem(4, 131313, 4);
+            newcart.AddItem(2, 10000, 2)
+                .AddItem(3, 10000, 3)
+                .AddItem(4, 10000, 4)
+                .RemoveItem(2)
+                .AddDiscount(50);
 
-            Console.WriteLine(Cart.TotalItems());
+            Console.WriteLine(Cart.TotalPrice());
         }
     }
 
