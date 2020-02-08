@@ -12,7 +12,7 @@ namespace OopAssignment
         public int Price { get; set; }
         public int Quantity { get; set; }
 
-        public static List<IItems> itemCart = new List<IItems>();
+        static List<IItems> itemCart = new List<IItems>();
 
         public Cart AddItem(int id, int price, int qty = 1)
         {

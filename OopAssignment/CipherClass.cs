@@ -31,13 +31,10 @@ namespace OopAssignment
             }
             catch (Exception ex)
             {
-                string filePath = @"/Users/training/Projects/OopAssignment/OopAssignment/app.log";
                 DateTime date = DateTime.Now;
-                string now = date.ToString();
-                string errorMessage = $"{now} {ex.Message}";
-                File.WriteAllText(filePath, errorMessage);
-                //TextWriter tsw = new StreamWriter(filePath, true);  NOT OVERWRITING EXISTING LOG
-                return errorMessage;
+                string now = date.ToShortDateString();
+                LogClass.errorLog.Add(new ErrorLog { Date = date, Message = ex.Message });
+                return ex.Message;
             }
         }
 
@@ -62,12 +59,10 @@ namespace OopAssignment
             }
             catch (Exception ex)
             {
-                string filePath = @"/Users/training/Projects/OopAssignment/OopAssignment/app.log";
                 DateTime date = DateTime.Now;
-                string now = date.ToString();
-                string errorMessage = $"{now} {ex.Message}";
-                File.WriteAllText(filePath, errorMessage);
-                return errorMessage;
+                string now = date.ToShortDateString();
+                LogClass.errorLog.Add(new ErrorLog { Date = date, Message = ex.Message });
+                return ex.Message;
             }
         }
     }
