@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OopAssignment
 {
@@ -8,7 +9,7 @@ namespace OopAssignment
         public static bool isLoggedIn = false;
         static int userId;
         public static DateTime lastLoggedIn;
-        private static List<User> userList = new List<User>();
+        private static List<IUser> userList = new List<IUser>();
 
         public static void Login(string name, string password)
         {
@@ -19,6 +20,7 @@ namespace OopAssignment
                 {
                     Console.WriteLine("You are now logged in!");
                     isLoggedIn = true;
+                    lastLoggedIn = DateTime.Now;
                     userId = u.Id;
                     
                     IsExist = true;
@@ -82,6 +84,30 @@ namespace OopAssignment
                 Console.WriteLine($"Your ID is {userId}");
             }
         }
+        public static void User()
+        {
+            if (!isLoggedIn)
+            {
+                Console.WriteLine("You are not logged in. Please log in first");
+            }
+            else
+            {
+                List<IUser> user = userList
+                    .Where(u => u.Id == userId).ToList();
+                string firstName = null;
+                string lastName = null;
+                string email = null;
+                foreach (var u in user)
+                {
+                    firstName = u.FirstName;
+                    lastName = u.LastName;
+                    email = u.Email;
+                }
+                Console.WriteLine($"First Name: {firstName}");
+                Console.WriteLine($"Last Name: {lastName}");
+                Console.WriteLine($"Email: {email}");
+            }
+        }
 
         public static void Check()
         {
@@ -99,7 +125,7 @@ namespace OopAssignment
         }
         public static void PopulateUser()
         {
-            userList.Add(new User { Username = "ram191", Password = "password", Id = 1, FirstName = "rayhan", LastName = "muhammad", Email = "ali_rayhan19@hotmail.com"});
+            userList.Add(new User { Username = "ram191", Password = "password", Id = 1, FirstName = "Rayhan", LastName = "Muhammad", Email = "ali_rayhan19@hotmail.com"});
         }
     }
 }
